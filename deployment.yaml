@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: simple-node-app
-          image: ajaybalaji969/featureb-branch-k8:5
+          image: ajaybalaji969/featureb-branch-k8:6
           ports:
             - containerPort: 3000
           resources:

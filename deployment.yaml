@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: simple-node-app
-          image: ajaybalaji969/my-node-k8:4 # Replace with your actual Docker image name
+          image: ajaybalaji969/my-node-k8:5
           ports:
             - containerPort: 3000
           resources:

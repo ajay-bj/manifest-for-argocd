@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-node-app-service
+  namespace: dev
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: simple-node-app
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-node-app-deployment
+  namespace: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-node-app
+  template:
+    metadata:
+      labels:
+        app: simple-node-app
+    spec:
+      containers:
+        - name: simple-node-app
+          image: ajaybalaji969/my-node-k8:TAG # Replace with your actual Docker image name
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "10m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
